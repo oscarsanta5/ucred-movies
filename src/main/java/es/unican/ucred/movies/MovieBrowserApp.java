@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class MovieBrowserApp {
     public static void main(String[] args) {
-		error romper codigo
+
         // Set system look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
