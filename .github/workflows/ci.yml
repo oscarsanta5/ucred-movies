@@ -24,26 +24,24 @@ jobs:
         
           
   pruebas:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: compilacion
-
+    strategy:
+      #fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        java: [11, 17, 25]
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar JDK 21
+      - name: Configurar JDK ${{ matrix.java }}
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: ${{ matrix.java }}
           distribution: 'temurin'
           cache: 'maven'
 
       - name: Compilar y test
         run: mvn clean test
-      
-      #- name: Upload artifact
-      #  uses: actions/upload-artifact@v4
-      #  if: failure()
-      #  with:
-      #    name: artefact-pruebas
-      #   path: target/      
+        
