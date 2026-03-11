@@ -27,7 +27,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: compilacion
     strategy:
-      #fail-fast: false
+      #fail-fast: false --> si esta a true cuando falla en un elemento de la matriz el resto no se hace.
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         java: [17, 21, 25]
